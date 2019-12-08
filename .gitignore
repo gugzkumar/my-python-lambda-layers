@@ -1,3 +1,4 @@
+*.zip
 !.gitkeep
 **/site-packages/**
 !**/site-packages/.gitkeep
