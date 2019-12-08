@@ -20,3 +20,5 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: bash generate-layer-zip.sh
+    - name: Publish Layer
+      run: aws lambda publish-layer-version --layer-name python-crypto --zip-file fileb://layer.zip
