@@ -28,8 +28,8 @@ pandas==0.25.3
 **IMPORTANT: If you update a layer make sure to also update your Lambda function to us the new version.**
 
 #### Option 1: Manual Creation
-1. Run `bash generate-layer-zip.sh`. This will create all of your layers
-1. Confirm you have a `.zip` created in the root of your project
+1. Run `bash generate-layer-zip.sh`.
+1. Confirm that in the `zipped-layers` folder of this project, you have zip files for each of your layers.
 1. Go to AWS create your layer by uploading the zip file, with python 3.7 as the lambda environment
 
 #### Option 2: Create With Continuous Deployment Via Github Actions
@@ -39,11 +39,29 @@ pandas==0.25.3
 1. Look in your AWS account to confirm that they are created
 
 # Adding new layers
-1. Add a new new folder to the root of the folder with the following folder structure.
+1. Add a new new folder to the root of the folder with the following folder structure. Fill `requirements.txt` with your versioned dependencies.
     ```
-
+    .
+    ├── ...
+    ├── my-new-layer
+    │   ├── python
+    │   │   ├── lib
+    │   │   │   ├── python3.7
+    │   │   │   │   ├── site-packages
+    │   │   │   │   │   ├── .gitkeep
+    │   ├── requirements.txt
+    │   └── ...
+    └── ...
+    -
+    ```
+1. Add this line to `build.sh`
+    ```
+    ...
+    build_a_layer "{LAYER_FOLDER_NAME}"
     ```
 1. Add this line to .github/workflows/publish_layer.yml
     ```
-
+    ...
+    - name: Publish {LAYER_FOLDER_NAME}
+      run: aws lambda publish-layer-version --layer-name {LAYER_NAME} --zip-file fileb://zipped-layers/{LAYER_FOLDER_NAME}.zip
     ```
