@@ -59,7 +59,7 @@ pandas==0.25.3
     ...
     build_a_layer "{LAYER_FOLDER_NAME}"
     ```
-1. Add this line to .github/workflows/publish_layer.yml
+1. Add these lines line to `.github/workflows/publish_layers.yml`. Properly replace `LAYER_FOLDER_NAME` and `LAYER_FOLDER_NAME`.
     ```
     ...
     - name: Publish {LAYER_FOLDER_NAME}
