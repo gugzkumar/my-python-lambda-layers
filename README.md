@@ -38,7 +38,7 @@ pandas==0.25.3
 1. Monitor the Publish_Layers workflow on the `Actions` tab of your repo. When this succeeds the layers should be created.
 1. Look in your AWS account to confirm that they are created
 
-# Adding new layers
+## Adding new layers
 1. Add a new new folder to the root of the folder with the following folder structure. Fill `requirements.txt` with your versioned dependencies.
     ```
     .
